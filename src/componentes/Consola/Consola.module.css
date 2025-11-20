@@ -1,0 +1,33 @@
+/* frontend/src/componentes/Consola/Consola.module.css */
+
+nav {
+    margin-top: 20px;
+    margin-left: 40px;
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px; 
+    align-items: center;
+}
+
+.principal {
+    display: flex;
+    flex-direction: column; /* La tabla y el mapa se apilan verticalmente */
+    width: 100vw;
+    height: calc(100vh - 80px); 
+    color: white;
+    padding: 20px 40px;
+    gap: 20px; 
+}
+
+.tablaContainer {
+    width: 100%; /* La tabla ocupa todo el ancho disponible */
+    overflow-x: auto; /* Mantiene la barra de desplazamiento horizontal */
+    max-height: 100%;
+}
+
+.principal > * {
+  flex: none; /* Desactivamos el comportamiento flexible para evitar que se redimensionen */
+  width: 100%;
+}
+
+/* La media query ya no es necesaria, el diseño es el mismo para todos los tamaños */

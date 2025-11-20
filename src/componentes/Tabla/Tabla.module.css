@@ -1,0 +1,116 @@
+/* frontend/src/componentes/Tabla/Tabla.module.css */
+
+.tablaContainer {
+    background-color: #333;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 0 6px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow-x: auto; /* Permite el scroll horizontal si la tabla es más ancha que la pantalla */
+    overflow-y: hidden;
+}
+
+/* Aplicamos Grid tanto al encabezado como a las filas */
+.tablaEncabezado, .tablaFila {
+    display: grid;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    align-items: center;
+    padding: 10px 12px;
+}
+
+/* Esta propiedad es la clave. Define el ancho de todas las 10 columnas. */
+/* Puedes ajustar los valores `1fr`, `minmax(0, 1fr)` o los anchos fijos */
+.tablaEncabezado, .tablaFila {
+    grid-template-columns: 
+        100px    /* ESPACIO */
+        70px     /* LIMPIAR */
+        1fr      /* TIEMPO (flex) */
+        80px     /* PAGAR */
+        1fr      /* INICIO (flex) */
+        1fr      /* FIN (flex) */
+        100px    /* PLACA */
+        100px    /* DNI */
+        1fr      /* NOMBRE (flex) */
+        80px;    /* BOLETA */
+}
+
+.tablaEncabezado {
+    background-color: rgba(255, 255, 255, 0.08);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.tablaFila:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.tablaFila:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.encabezadoItem, .celda {
+    /* Estilos para las celdas individuales */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 5px; /* Ajusta el padding para la alineación */
+}
+
+.loading, .noData {
+    text-align: center;
+    padding: 20px;
+}
+
+.botonCheck, .botonCliente, .linkEspacio {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    font-size: inherit;
+    padding: 0;
+    text-decoration: none;
+}
+
+.botonCheck:hover, .botonCliente:hover, .linkEspacio:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+
+.botonCheck, .botonCliente, .linkEspacio {
+    /* Estilos base */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    font-size: inherit;
+    padding: 0;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+/* Estilo específico para el icono de PDF */
+.pdfIcono {
+    font-size: 20px; /* Aumenta el tamaño del icono */
+    color: #007bff; /* Un color azul brillante para que resalte */
+    opacity: 1; /* Asegura que no sea opaco */
+    /* Puedes usar cualquier otro color que te guste, como #f0f0f0 (blanco) */
+}
+
+/* Efecto hover para cuando el usuario pasa el mouse sobre el icono */
+.pdfIcono:hover {
+    color: #ffffff; /* Cambia a blanco al pasar el mouse */
+}
+
+.botonCheck:hover, .botonCliente:hover, .linkEspacio:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+.pdfIcono {
+    font-size: 20px !important; /* Aumenta el tamaño del icono y lo fuerza */
+    color: #1d68b9 !important;  /* Le da color y lo fuerza */
+    opacity: 1 !important;      /* Asegura que no sea transparente y lo fuerza */
+}
+
+.pdfIcono:hover {
+    color: #ffffff !important;
+}

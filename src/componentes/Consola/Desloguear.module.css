@@ -1,0 +1,17 @@
+/* frontend/src/componentes/Desloguear/Desloguear.module.css */
+
+.botonDesloguear {
+  padding: 0.75rem 1.5rem;
+  background-color: #e74c3c; /* Color rojo para destacar la acción de salir */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.botonDesloguear:hover {
+  background-color: #c0392b;
+}

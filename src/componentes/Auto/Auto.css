@@ -1,0 +1,8 @@
+button{
+    background: transparent;
+    border: none;
+
+}
+button:active{
+    scale: 1.3;
+}

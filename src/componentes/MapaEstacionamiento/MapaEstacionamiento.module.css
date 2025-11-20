@@ -1,0 +1,248 @@
+/* frontend/src/componentes/MapaEstacionamiento/MapaEstacionamiento.module.css */
+
+.mapaParqueo {
+  display: flex;
+  width: 50vw;
+  height: 80vh;
+  flex-direction: row;
+  border-radius: 12px;
+  box-shadow: 
+    0 15px 30px rgba(0, 0, 0, 0.4),
+    0 5px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease-in-out;
+}
+
+.mapaParqueoLoaded {
+  animation: fadeInScale 0.8s ease-out forwards;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.izquierda,
+.derecha {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 10px;
+  gap: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.derecha {
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  border-right: 2px solid white;
+}
+
+.izquierda {
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  border-left: 2px solid white;
+}
+
+.centro {
+  width: 20%;
+  border-top: 2px solid white;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.08);
+  border-right: 2px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9em;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.espacioIzquierda,
+.espacioDerecha {
+  display: grid;
+  width: 100%;
+  height: 20%;
+  max-width: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 5px;
+  transition: all 0.2s ease-out;
+  position: relative;
+}
+
+.espacioIzquierda {
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 50% 50%;
+  grid-template-areas: 
+    "automovil cronometro"
+    "automovil detener";
+}
+
+.espacioDerecha {
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 50% 50%;
+  grid-template-areas: 
+    "cronometro automovil"
+    "detener automovil";
+}
+
+.atumovil {
+  grid-area: automovil;
+  border-top: 2px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  background-color: #000;
+}
+
+.atumovil span {
+  font-size: 0.8em;
+  color: rgba(100, 200, 255, 0.9);
+  font-weight: 500;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.5px;
+}
+
+.cronometro {
+  grid-area: cronometro;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.detener {
+  grid-area: detener;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.espacioIzquierda:hover,
+.espacioDerecha:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.6),
+    0 0 15px rgba(0, 180, 255, 0.3);
+  background-color: rgba(0, 0, 0, 0.45);
+  border-color: rgba(0, 180, 255, 0.5);
+  z-index: 1;
+}
+
+.espacioIzquierda:active,
+.espacioDerecha:active {
+  transform: translateY(0) scale(1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5) inset;
+  background-color: rgba(0, 0, 0, 0.55);
+}
+
+.detener button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 1.1em;
+}
+
+.detener button:hover {
+  background-color: rgba(255, 0, 0, 0.2);
+  color: #ff6b6b;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+  border-radius: 4px;
+}
+
+.detener button:active {
+  background-color: rgba(255, 0, 0, 0.3);
+  transform: scale(0.98);
+}
+
+.etiquetaEstacionamiento {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  right: 0;
+  font-size: 0.75em;
+  font-weight: bold;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 2px 0;
+  border-radius: 4px;
+  text-align: center;
+  z-index: 2;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.5px;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+/* ------------------------------------------------------------- */
+/* ---------- ESTILOS AÑADIDOS PARA MOSTRAR LOS ÍCONOS --------- */
+/* ------------------------------------------------------------- */
+
+/* Estilos para los íconos de Auto y Detener */
+.atumovil svg,
+.detener svg {
+    /* Define el tamaño del ícono */
+    width: 60%;
+    height: 60%;
+    
+    /* Le da un color al ícono para que sea visible */
+    fill: rgba(100, 200, 255, 0.9); 
+    
+    /* Mantiene el efecto de sombra */
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.1));
+    transition: all 0.2s ease;
+}
+
+/* Estilo para el botón de detener, si tiene un SVG dentro */
+.detener button svg {
+  fill: rgba(255, 255, 255, 0.8);
+}
+
+.detener button:hover svg {
+  fill: #ff6b6b;
+}
+
+/* La propiedad `filter: drop-shadow` es un buen efecto, pero
+   asegúrate de que no haya un estilo general que la anule.
+   Las reglas de hover ahora se aplican directamente al SVG.
+*/
+.espacioIzquierda:hover .atumovil svg,
+.espacioDerecha:hover .atumovil svg {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.4));
+}
