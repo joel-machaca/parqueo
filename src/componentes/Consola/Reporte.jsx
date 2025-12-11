@@ -52,37 +52,43 @@ export default function Reporte() {
   };
 
   const handleExportarReporte = async () => {
-    if (!fechaInicio || !fechaFin) {
-      alert("Por favor, selecciona una fecha de inicio y una de fin.");
-      return;
+  if (!fechaInicio || !fechaFin) {
+    alert("Por favor, selecciona una fecha de inicio y una de fin.");
+    return;
+  }
+
+  try {
+    // Ajustar fechas para incluir todo el día
+    const fechaInicioCompleta = fechaInicio + 'T00:00:00';
+    const fechaFinCompleta = fechaFin + 'T23:59:59';
+
+    // Consulta a Supabase: incluye registros que tengan al menos un instante dentro del rango
+    const { data, error } = await supabase
+      .from('registros_parqueo')
+      .select('*')
+      .or(
+        `and(tiempo_inicio.lte.${fechaFinCompleta},tiempo_fin.gte.${fechaInicioCompleta})`
+      );
+
+    if (error) {
+      throw error;
     }
 
-    try {
-      const { data, error } = await supabase
-        .from('registros_parqueo')
-        .select('*')
-        .gte('tiempo_inicio', fechaInicio)
-        .lte('tiempo_fin', fechaFin);
-
-      if (error) {
-        throw error;
-      }
-
-      if (data && data.length > 0) {
-        const csv = formatearDatosParaCSV(data);
-        descargarCSV(csv);
-        alert('Reporte CSV exportado con éxito.');
-      } else {
-        alert('No se encontraron registros en el rango de fechas seleccionado.');
-      }
-
-    } catch (error) {
-      console.error('Error al exportar el reporte:', error.message);
-      alert('Hubo un error al exportar el reporte.');
-    } finally {
-      handleCerrarModal();
+    if (data && data.length > 0) {
+      const csv = formatearDatosParaCSV(data);
+      descargarCSV(csv);
+      alert('Reporte CSV exportado con éxito.');
+    } else {
+      alert('No se encontraron registros en el rango de fechas seleccionado.');
     }
-  };
+
+  } catch (error) {
+    console.error('Error al exportar el reporte:', error.message);
+    alert('Hubo un error al exportar el reporte.');
+  } finally {
+    handleCerrarModal();
+  }
+};
 
   return (
     <>
